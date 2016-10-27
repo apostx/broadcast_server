@@ -1,5 +1,7 @@
-package duelcard.config;
+package com.ras.broadcastserver.config;
 
+import com.ras.broadcastserver.mvc.config.WebMvcConfig;
+import com.ras.broadcastserver.ws.config.WebSocketConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class DispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -12,7 +14,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
-                WebConfig.class,
+                WebMvcConfig.class,
                 WebSocketConfig.class
         };
     }

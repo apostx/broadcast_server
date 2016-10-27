@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WebSocket Echo Test</title>
+    <title>WebSocket Broadcast Test</title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script>
         var gameServer = null;
 
         function connect() {
             showMessage("Connecting...");
-            gameServer = new WebSocket("${websocket_url}");
+            gameServer = new WebSocket("ws://" + location.host + "/ws");
 
-            gameServer.onopen = function() {
+            gameServer.onopen = function () {
                 showMessage("Connected");
 
-                var MESSAGE = "Hello World!";
+                var INIT = JSON.stringify({type: "join", data: "HelloWorld!"});
+                var MESSAGE = JSON.stringify({type: "broadcast", data: "HelloWorld!"});
 
+                showMessage("Sent message: " + INIT);
+                gameServer.send(INIT);
                 showMessage("Sent message: " + MESSAGE);
                 gameServer.send(MESSAGE);
             };
 
-            gameServer.onmessage = function(e) {
+            gameServer.onmessage = function (e) {
                 showMessage("Received message: " + e.data);
-
-                gameServer.close();
             };
 
-            gameServer.onclose = function(e) {
+            gameServer.onclose = function (e) {
                 showMessage("Connection closed ");
             };
 
-            gameServer.onerror = function(e) {
+            gameServer.onerror = function (e) {
                 showMessage("Error!");
             };
         }
@@ -48,7 +50,8 @@
     </script>
 </head>
 <body onload="connect();" onunload="disconnect();">
-<h1>WebSocket Echo Test</h1>
+<h1>WebSocket Broadcast Test</h1>
+<h2>Session ID: ${session_id}</h2>
 <textarea style="width: 300px; height: 100px;" id="messages" disabled="true"></textarea>
 </body>
 </html>

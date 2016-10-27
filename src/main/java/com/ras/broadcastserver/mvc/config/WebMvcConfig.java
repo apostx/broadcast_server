@@ -1,4 +1,4 @@
-package duelcard.config;
+package com.ras.broadcastserver.mvc.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,8 +11,8 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "duelcard.mvc.controller")
-public class WebConfig extends WebMvcConfigurerAdapter {
+@ComponentScan(basePackages = "com.ras.broadcastserver.mvc.controller")
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public ViewResolver viewResolver() {
