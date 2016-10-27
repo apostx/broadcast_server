@@ -1,4 +1,4 @@
-# Echo Server Exmaple
+# Broadcast Server
 
 ### (Spring MVC + WebSocket)
 
